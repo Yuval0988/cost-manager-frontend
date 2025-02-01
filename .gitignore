@@ -5,6 +5,9 @@
 
 # testing
 /coverage
+/public/test.html
+/public/test-idb.html
+/public/idb.js
 
 # production
 /build
@@ -15,7 +18,17 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# documentation and setup files
+GITHUB_*.md
+REACT_CODE_OVERVIEW.md
+IDB_VERSIONS.md
+REQUIREMENTS_CHECKLIST.md
+CODE_STYLE_GUIDE.md
+GIT_INSTALLATION.md
+SETUP*.md
