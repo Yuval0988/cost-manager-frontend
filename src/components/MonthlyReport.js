@@ -30,7 +30,7 @@ function MonthlyReport() {
   
   // State for date selection and data
   const [selectedDate, setSelectedDate] = useState({
-    month: new Date().getMonth() + 1, // Current month (1-12)
+    month: new Date().getMonth() + 1,
     year: new Date().getFullYear()
   });
   const [costs, setCosts] = useState([]);
@@ -51,6 +51,18 @@ function MonthlyReport() {
   );
 
   /**
+   * Formats number as currency
+   * @param {number} amount - Amount to format
+   * @returns {string} Formatted currency string
+   */
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(amount);
+  };
+
+  /**
    * Fetches cost data when selected date changes
    */
   useEffect(() => {
@@ -65,11 +77,11 @@ function MonthlyReport() {
         );
         setCosts(monthCosts);
 
-        // Get category totals for pie chart
-        const categoryTotals = await db.getCostsByCategory(
-          selectedDate.month,
-          selectedDate.year
-        );
+        // Calculate category totals for pie chart
+        const categoryTotals = monthCosts.reduce((acc, cost) => {
+          acc[cost.category] = (acc[cost.category] || 0) + cost.sum;
+          return acc;
+        }, {});
         
         // Transform category data for pie chart
         const pieData = Object.entries(categoryTotals).map(([category, value], index) => ({
@@ -82,7 +94,7 @@ function MonthlyReport() {
         setError(null);
       } catch (err) {
         console.error('Error loading report:', err);
-        setError('Failed to load report data');
+        setError('Failed to load report data. Please try again.');
       }
     };
 
@@ -99,18 +111,6 @@ function MonthlyReport() {
       ...prev,
       [name]: Number(value)
     }));
-  };
-
-  /**
-   * Formats number as currency
-   * @param {number} amount - Amount to format
-   * @returns {string} Formatted currency string
-   */
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(amount);
   };
 
   return (
