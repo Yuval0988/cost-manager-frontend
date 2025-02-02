@@ -112,7 +112,7 @@ function App() {
               textShadow: '1px 1px 1px rgba(0,0,0,0.1)'
             }}
           >
-            Cost Manager
+            Yuval and Shaked's project
           </Typography>
           
           {/* Navigation tabs */}

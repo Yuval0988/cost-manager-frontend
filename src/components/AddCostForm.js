@@ -183,15 +183,20 @@ function AddCostForm() {
           {/* Submit button */}
           <Button 
             type="submit" 
-            variant="contained" 
-            color="primary"
-            size="large"
+            variant="contained"
+            size="medium"
             sx={{ 
               mt: 1,
-              height: '48px',
+              height: '42px',
+              width: '180px',
+              margin: '0 auto',
               borderRadius: '8px',
               textTransform: 'none',
-              fontSize: '1rem'
+              fontSize: '0.95rem',
+              backgroundColor: '#4caf50',
+              '&:hover': {
+                backgroundColor: '#388e3c'
+              }
             }}
           >
             Save Cost
