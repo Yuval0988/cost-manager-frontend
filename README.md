@@ -16,23 +16,6 @@ A React-based cost management application that helps users track and visualize t
 - Material-UI
 - IndexedDB
 
-## Getting Started
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-2. Start development server:
-   ```bash
-   npm start
-   ```
-
-3. Build for production:
-   ```bash
-   npm run build
-   ```
-
 ## Browser Support
 
 Optimized for Google Chrome browser.
